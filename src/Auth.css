@@ -1,0 +1,79 @@
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 300px;
+}
+
+.auth-row {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.auth-row label {
+    margin-right: 10px;
+    width: 40%;
+}
+
+.auth-row select, .auth-row input, .auth-row button, .auth-row a {
+    width: 60%;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.password-container input {
+    flex: 1;
+}
+
+.password-container button {
+    margin-left: 5px;
+    width: 30px;
+    padding: 0;
+}
+
+.auth-row button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.auth-row button:hover {
+    background-color: #0056b3;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.remember-me input {
+    margin-right: 5px;
+    width: auto;
+}
+
+.remember-me label {
+    width: auto;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth-buttons button {
+    width: 45%;
+}
