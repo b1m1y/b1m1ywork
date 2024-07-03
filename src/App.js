@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TopPanel from './TopPanel';
-import MainMenu from './MainMenu';
-import CollaborationWork from './CollaborationWork';
-import UnderDevelopment from './UnderDevelopment';
+import Auth from './Auth';
+import Directory from './Directory';
 import './App.css';
 
 function App() {
-    const [serverName, setServerName] = useState('');
-    const [isConnected, setIsConnected] = useState(false);
-    const [showDirectory, setShowDirectory] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
 
-    return (
-        <Router>
-            <div className="app">
-                <TopPanel serverName={serverName} />
-                <MainMenu serverName={serverName} />
-                <div className="content-area">
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <CollaborationWork
-                                    onServerSelect={setServerName}
-                                    isConnected={isConnected}
-                                    setIsConnected={setIsConnected}
-                                    showDirectory={showDirectory}
-                                    setShowDirectory={setShowDirectory}
-                                />
-                            }
-                        />
-                        <Route path="/under-development" element={<UnderDevelopment />} />
-                    </Routes>
-                </div>
-            </div>
-        </Router>
-    );
+  const handleConnect = () => {
+    setShowAuth(true);
+  };
+
+  const handleAuthClose = (success) => {
+    if (success) {
+      setIsConnected(true);
+    }
+    setShowAuth(false);
+  };
+
+  return (
+      <div className="app">
+        <TopPanel onConnect={handleConnect} />
+        {isConnected ? (
+            <Directory />
+        ) : (
+            <div className="welcome-message">Пожалуйста, подключитесь к серверу</div>
+        )}
+        {showAuth && <Auth onClose={handleAuthClose} />}
+      </div>
+  );
 }
 
 export default App;
