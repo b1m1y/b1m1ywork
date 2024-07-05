@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopPanel from './TopPanel';
 import Auth from './Auth';
 import Directory from './Directory';
@@ -6,11 +6,7 @@ import './App.css';
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
-  const [showAuth, setShowAuth] = useState(false);
-
-  const handleConnect = () => {
-    setShowAuth(true);
-  };
+  const [showAuth, setShowAuth] = useState(true);  // Изменено на true
 
   const handleAuthClose = (success) => {
     if (success) {
@@ -21,11 +17,11 @@ function App() {
 
   return (
       <div className="app">
-        <TopPanel onConnect={handleConnect} />
+        <TopPanel />
         {isConnected ? (
             <Directory />
         ) : (
-            <div className="welcome-message">Пожалуйста, подключитесь к серверу</div>
+            <div className="welcome-message">Пожалуйста, авторизуйтесь</div>
         )}
         {showAuth && <Auth onClose={handleAuthClose} />}
       </div>
